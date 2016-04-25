@@ -23,7 +23,7 @@ script:
 
 before_deploy:
   - export RELEASE_FILES=$(ls *.bottle.tar.gz)
-  - echo "Deploying files to Github: $RELEASE_FILES"
+  - "echo 'Deploying files to Github: '$RELEASE_FILES"
 
 deploy:
   provider: releases
