@@ -17,8 +17,9 @@ install:
   - brew unlink boost
 
 script:
-  - brew install --verbose --build-bottle boost --c++11
-  - brew bottle boost
+#  - brew install --verbose --build-bottle boost --c++11
+#  - brew bottle boost
+  - date > boost-1.60.0_2.mavericks.bottle.tar.gz
 
 deploy:
   provider: releases
