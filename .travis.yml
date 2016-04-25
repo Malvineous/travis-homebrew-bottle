@@ -6,14 +6,13 @@ os:
   - osx
 
 compiler:
-  - clang
-#  - gcc
+  - gcc
 
 # Only build the master branch, otherwise once the release is added, Github
 # creates a tag which triggers another identical build.
 branches:
   only:
-    - master
+    - boost-gcc
 
 before_install:
   - brew update
@@ -23,8 +22,8 @@ install:
   - brew unlink boost
 
 script:
-  - brew install --verbose --build-bottle boost --c++11
-  - brew bottle boost
+  - HOMEBREW_CC="g++-4.8" brew install --verbose --build-bottle boost --c++11
+  - HOMEBREW_CC="g++-4.8" brew bottle boost
 
 before_deploy:
   - export RELEASE_FILES=$(ls *.bottle.tar.gz)
