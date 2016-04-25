@@ -21,11 +21,15 @@ script:
 #  - brew bottle boost
   - date > boost-1.60.0_2.mavericks.bottle.tar.gz
 
+before_deploy:
+  - export RELEASE_FILES=$(ls *.bottle.tar.gz)
+  - echo "Deploying files to Github: $RELEASE_FILES"
+
 deploy:
   provider: releases
   api_key:
     secure: GSb690wD+BgeoaY91gy8OPjepDmKlHtVuNr3cxgmx0znSZrECfoYGenjBE5nvjWQUD2LnHFfH32RR5Ni8L84mGf3AC82vXxNQO3MgCp/omO8bHFQofYc9jtdILn2zkRS/Tdz3Mqn9wtSSWfwaOgLOAXJSPyFBkYX6LSOuny7v1IddsUaz5mXaq0JPYAtbQ26rzZ0gXs66TMxd59dR5N9UXVRJ4u4JlH9rxTQkLy5ENYJDh2b0VRuOqYBWNDapBGWlWOCB/9S1xKzzRgjaGLUZpGnbXFTawYTpKCw7SB222wOg/8vapAxz5y6PG/Q2tL5rDgqBEWNoAh0jk9FETIim+RaRmr5UIbzN5IvZkhiNbWDyhh5pbUYhQlt4D14OYwjRV9RD3oxX6MBKOI4UtlNdSfrd8ZY+jcJ2Id2pm9ECg2ZwmkOHBgCCFw9e0WPBQxDhdJpxhIqZDdkNK1rVQP92SWdgf++Mts1mF47rNOfOg7QpFfZc6vFHreSc2/2ME50+XgLHvwmTcaR2ThkY9lrgJClwvLwn2PJDmZA41zwcdWt+5Ry3w8jtDMyt9uUu7qB8pKAQ+eTTw32qXx0KnGtr6flWoYL8mDFgN0BNWI9fjtvBCGf7pLx50iEmIiYpTGOgOIZjk1bPadyuehumcRM7sOAjdv/SRsUdfCVWHWE8X0=
-  file: "*.bottle.tar.gz"
+  file: "${RELEASE_FILES}"
   skip_cleanup: true
   on:
     repo: Malvineous/boost-cxx11-brew
